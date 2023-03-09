@@ -5,8 +5,8 @@ import { checkingAuthentication, startGoogleSignIn } from '../../store/auth';
 import '../auth.css';
 
 const initialForm = {
-    email: 'german@google.com',
-    password: '123456',
+    email: '',
+    password: '',
 
 };
 

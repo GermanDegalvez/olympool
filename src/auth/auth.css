@@ -13,7 +13,7 @@ body {
     margin-top: 10vh;
     margin-bottom: 10vh;
     min-width: 60vh;
-    background-color: rgba(178,255,255,0.3);
+    background-color: rgba(178,255,255,0.4);
     border-radius: 10px;
     box-shadow:
        inset 0 -3em 3em rgba(0,0,0,0.1),
@@ -29,6 +29,7 @@ body {
     margin: 0;
     height: 1em;
     margin-top: -12px;
+    color: #B43A20;
 }
 
 hr {
@@ -56,6 +57,8 @@ hr {
 .align-right {
     text-align: right;
 }
+
+
 
 
 

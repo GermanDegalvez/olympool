@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
+import { startCreatingUserWithEmailPassword } from '../../store/auth';
 
 
 const initialForm = {
-    displayName: 'German De galvez',
-    email: 'german@google.com',
-    password: '123456',
+    displayName: '',
+    email: '',
+    password: '',
 
 };
 
@@ -13,13 +15,15 @@ const formValidations = {
     email: [ (value) => value.includes('@'),'El correo debe tener una @'],
     password: [ (value) => value.length >= 6,'El password debe tener mas de 6 letras'],
     displayName: [(value) => value.length >= 1,'El nombre es requerido']
-}
+  }
 
 export const RegisterPage = () => {
 
+    const dispatch = useDispatch();
+
     const { 
         displayName, email, password, onInputChange, formState,
-        isFormValid
+        isFormValid, displayNameValid, emailValid, passwordValid,
     } = useForm(
         initialForm,
         formValidations
@@ -31,8 +35,13 @@ export const RegisterPage = () => {
         event.preventDefault();
         setFormSubmitted( true );
 
+        if ( !displayNameValid ) {
+            
+        }
+
         if ( !isFormValid ) return
 
+        dispatch( startCreatingUserWithEmailPassword( {email, password, displayName} ) );
 
     }
 
@@ -53,6 +62,7 @@ export const RegisterPage = () => {
             <div>
                 <input 
                     className='my-3 form-control' 
+                    autoComplete='off'
                     type="text" 
                     placeholder="Nombre de usuario"
                     name='displayName'
@@ -70,6 +80,7 @@ export const RegisterPage = () => {
             <div>
                 <input 
                     className='my-3 form-control' 
+                    autoComplete='off'
                     type="email" 
                     placeholder="Correo"
                     name='email'
@@ -85,7 +96,8 @@ export const RegisterPage = () => {
             <div>
                 <input 
                     className='my-3 form-control' 
-                    type="text" 
+                    autoComplete='off'
+                    type="password" 
                     placeholder="Password"
                     name='password'
                     value={ password }
@@ -98,20 +110,20 @@ export const RegisterPage = () => {
                 </div>
             </div>
             
-            <div>
-            <input 
-                className='my-3 form-control' 
-                type="text" 
-                placeholder="Confirmar Password"
-                name='password'
-                value={ password }
-                onChange={ onInputChange }
-                required
-            />
-            <div className="invalid-feedback validtaion-alert">
-                <p className='validtaion-alert'>Las contraseñas deben coincidir</p>
-            </div>
-            </div>
+            {/* <div>
+                <input 
+                    className='my-3 form-control' 
+                    type="text" 
+                    placeholder="Confirmar Password"
+                    name='password'
+                    value={ password }
+                    onChange={ onInputChange }
+                    required
+                />
+                <div className="invalid-feedback validtaion-alert">
+                    <p className='validtaion-alert'>Las contraseñas deben coincidir</p>
+                </div>
+            </div> */}
             
             <div className='my-3 align-center'>
                 <button 
@@ -127,7 +139,7 @@ export const RegisterPage = () => {
         
         <div className='align-right pb-2'>
             <label className='text-light'>Ya tienes una cuenta? </label> &nbsp;
-            <a className='text-primary' href="/auth/login">Iniciar sesión.</a>
+            <a className='text-primary'href="/auth/login">Iniciar sesión.</a>
         </div>
 
     </div>

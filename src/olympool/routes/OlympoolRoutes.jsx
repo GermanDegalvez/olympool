@@ -6,7 +6,7 @@ export const OlympoolRoutes = () => {
     <Routes>
         <Route path="/" element={ <OlympoolPage/> } />
         
-        <Route path="/" element={ <Navigate to="/" /> } />
+        <Route path="/*" element={ <Navigate to="/" /> } />
     </Routes>
   )
 }

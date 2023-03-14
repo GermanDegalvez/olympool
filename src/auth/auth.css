@@ -1,9 +1,10 @@
-body {
+.fondo {
     background: url(../assets/wallpaperbetter.com_1920x1080.jpg) no-repeat center center fixed;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
 .login-form {
@@ -13,6 +14,7 @@ body {
     margin-top: 10vh;
     margin-bottom: 10vh;
     min-width: 60vh;
+    width: 60vh;
     background-color: rgba(178,255,255,0.4);
     border-radius: 10px;
     box-shadow:
@@ -56,6 +58,11 @@ hr {
 
 .align-right {
     text-align: right;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+    border-color: white;
+    background-image: none;
 }
 
 
